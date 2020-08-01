@@ -28,7 +28,7 @@ setup(
     install_requires=[],
     entry_points={
         "console_scripts": [
-            "flashcards-cli=__main__:flashcards.main",
+            "flashcards-cli=flashcards.__main__:main",
         ]
     },
 )
