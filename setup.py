@@ -17,9 +17,9 @@ setup(
     url="https://github.com/jj-style/flashcards-cli",
     author="JJ Style",
     author_email="style.jj@protonmail.com",
-    license="GPLv3",
+    license="GNU General Public License v3 (GPLv3)",
     classifiers=[
-        "License :: OSI Approved :: GPLv3 License",
+        "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.8",
     ],
