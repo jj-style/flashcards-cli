@@ -1,6 +1,7 @@
 from flashcards.flashcard import Flashcard
 import random
 import os
+import reprlib
 
 class Set:
     def __init__(self, name, cards=[]):
@@ -37,9 +38,16 @@ class Set:
             self.current += 1
             return self.cards[self.current - 1]
         raise StopIteration
+    
+    def __str__(self):
+        return f"{self.name} containing {self.number_of_terms} terms"
+    
+    def __repr__(self):
+        return reprlib.repr(self.cards)
 
 def learn_set(card_set, shuffle=False, answer_reverse=False):
-    print(f"Learning {card_set.number_of_terms} terms in {card_set.name}, good luck!\n")
+    """Loop over set a set of flashcards"""
+    print(f"Learning {card_set}, good luck!\n")
     if shuffle:
         card_set.shuffle()
     
