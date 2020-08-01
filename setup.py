@@ -23,7 +23,7 @@ setup(
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.8",
     ],
-    packages=["reader"],
+    packages=["flashcards"],
     include_package_data=True,
     install_requires=[],
     entry_points={
