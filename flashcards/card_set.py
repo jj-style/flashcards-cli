@@ -5,19 +5,21 @@ import reprlib
 
 class Set:
     def __init__(self, name, cards=[]):
-        self.current = 0
+        self.__current = 0
         self.cards = cards
         self.name = name
 
     @classmethod
     def create_empty_set(cls):
-        return cls("empty set",[])
+        """creates an empty set of flashcards"""
+        return cls("Unnamed Set",[])
 
     @classmethod
     def load_from_csv(cls, filename):
+        """reads flashcards from csv file and returns a new set of flashcards"""
         cards = []
         with open(filename, "r") as file:
-            next(file)
+            next(file) # skip header of csv file
             for line in file:
                 term, definition = line.split(",")
                 cards.append(Flashcard(term.strip(), definition.strip()))
@@ -28,15 +30,16 @@ class Set:
         return len(self.cards)
 
     def shuffle(self):
+        """shuffles the order of the flashcards"""
         random.shuffle(self.cards)
 
     def __iter__(self):
         return self
 
     def __next__(self):
-        if self.current < len(self.cards):
-            self.current += 1
-            return self.cards[self.current - 1]
+        if self.__current < len(self.cards):
+            self.__current += 1
+            return self.cards[self.__current - 1]
         raise StopIteration
     
     def __str__(self):
@@ -47,6 +50,7 @@ class Set:
 
 def learn_set(card_set, shuffle=False, answer_reverse=False):
     """Loop over set a set of flashcards"""
+
     print(f"Learning {card_set}, good luck!\n")
     if shuffle:
         card_set.shuffle()

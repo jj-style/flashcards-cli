@@ -4,6 +4,11 @@ class Flashcard:
         self.definition = definition
 
     def check(self, answer, reverse=False):
+        """validate an answer against the flashcard
+            arguments:
+                answer: answer given by user to validate against (required)
+                reverse: boolean representing whether answering with definition or term, defaults to False (optional)
+        """
         correct_answer = self.definition if not reverse else self.term
         if correct_answer.lower() == answer.lower():
             return True
