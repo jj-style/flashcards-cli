@@ -8,7 +8,7 @@ Useful for learning vocabulary of a new language.
 usage: flashcards [-h] [-s] [-r] path
 
 positional arguments:
-  path           path to flashcard csv file
+  path           path to flashcard csv file(s)
 
 optional arguments:
   -h, --help     show this help message and exit
@@ -26,7 +26,9 @@ optional arguments:
   
   Validation is case **insensitive** and if there are multiple possible answers like above, separate them with a semi-colon and if the answer provided matches
   just one of the options it will be counted as correct.  
-  If the answer is incorrect the correct answer is shown.
+  If the answer is incorrect the correct answer is shown.  
+
+  Multiple files can be given and they will all be combined
   
   I will implement some other formats to load flashcard sets from if I find there is a universal standard or more common format.
   However, if you have a flashcard set in Quizlet it can be exported and you can choose it to export in the format above.

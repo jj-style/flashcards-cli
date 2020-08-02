@@ -10,7 +10,7 @@ README = (HERE / "README.md").read_text()
 # This call to setup() does all the work
 setup(
     name="flashcards-cli",
-    version="1.1.3",
+    version="1.2.3",
     description="Learn a set of flashcards",
     long_description=README,
     long_description_content_type="text/markdown",
@@ -28,7 +28,7 @@ setup(
     install_requires=[],
     entry_points={
         "console_scripts": [
-            "flashcards-cli=flashcards.__main__:main",
+            "flashcards-cli=__main__:main",
         ]
     },
 )
