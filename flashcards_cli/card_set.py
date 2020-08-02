@@ -1,4 +1,4 @@
-from flashcards.flashcard import Flashcard
+from flashcards_cli.flashcard import Flashcard
 import random
 import os
 import reprlib
@@ -15,15 +15,29 @@ class Set:
         return cls("Unnamed Set",[])
 
     @classmethod
-    def load_from_csv(cls, filename):
-        """reads flashcards from csv file and returns a new set of flashcards"""
+    def load_from_csv(cls, filename, *filenames):
+        """reads flashcards from csv file and returns a new set of flashcards
+            can take more than one filename and combines all flashcards into one set
+        """
         cards = []
-        with open(filename, "r") as file:
-            next(file) # skip header of csv file
-            for line in file:
-                term, definition = line.split(",")
-                cards.append(Flashcard(term.strip(), definition.strip()))
-        return cls(os.path.basename(filename),cards)
+        files = [filename]
+        files.extend(filenames)
+        files_read = 0
+        for fname in files:
+            try:
+                with open(fname, "r") as file:
+                    next(file) # skip header of csv file
+                    for line in file:
+                        term, definition = line.split(",")
+                        cards.append(Flashcard(term.strip(), definition.strip()))
+                files_read += 1
+            except:
+                print(f"error opening {fname}, skipping...")
+                continue
+        if files_read == 0:
+            print("Unable to load any flashcards, please try again.")
+            exit(1)
+        return cls(",".join(list(map(os.path.basename,files))),cards)
 
     @property
     def number_of_terms(self):

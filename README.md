@@ -5,10 +5,10 @@ Useful for learning vocabulary of a new language.
 
 # Usage
 ```bash
-usage: flashcards [-h] [-s] [-r] path
+usage: flashcards [-h] [-s] [-r] path [path ...]
 
 positional arguments:
-  path           path to flashcard csv file
+  path           path(s) to flashcard csv file(s)
 
 optional arguments:
   -h, --help     show this help message and exit
