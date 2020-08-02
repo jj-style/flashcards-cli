@@ -1,6 +1,6 @@
 import sys
 import argparse
-from cards import Set, learn_set
+from .card_set import Set, learn_set
 
 def main():
     parser = argparse.ArgumentParser()

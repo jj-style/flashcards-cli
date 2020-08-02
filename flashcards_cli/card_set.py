@@ -1,4 +1,4 @@
-from .flashcard import Flashcard
+from flashcards_cli.flashcard import Flashcard
 import random
 import os
 import reprlib
