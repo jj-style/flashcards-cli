@@ -2,11 +2,12 @@ from flashcards_cli.flashcard import Flashcard
 import random
 import os
 import reprlib
+from itertools import chain
 
 class Set:
-    def __init__(self, name, cards=[]):
+    def __init__(self, name, cards=None):
         self.__current = 0
-        self.cards = cards
+        self.cards = list(cards) if cards is not None else []
         self.name = name
 
     @classmethod
@@ -38,9 +39,8 @@ class Set:
             print("Unable to load any flashcards, please try again.")
             exit(1)
         return cls(",".join(list(map(os.path.basename,files))),cards)
-
-    @property
-    def number_of_terms(self):
+    
+    def __len__(self):
         return len(self.cards)
 
     def shuffle(self):
@@ -48,19 +48,30 @@ class Set:
         random.shuffle(self.cards)
 
     def __iter__(self):
-        return self
+        return iter(self.cards)
 
-    def __next__(self):
-        if self.__current < len(self.cards):
-            self.__current += 1
-            return self.cards[self.__current - 1]
-        raise StopIteration
+    def __getitem__(self, index):
+        result = self.cards[index]
+        return Set(result) if isinstance(index, slice) else result
+
+    def __eq__(self, rhs):
+        if not isinstance(rhs, Set):
+            return NotImplemented
+        return self.cards == rhs.cards
+    
+    def __ne__(self, rhs):
+        if not isinstance(rhs, Set):
+            return NotImplemented
+        return self.cards != rhs.cards
+
+    def __add__(self, rhs):
+        return Set(f"{self.name},{rhs.name}", chain(self.cards, rhs.cards))
     
     def __str__(self):
-        return f"{self.name} containing {self.number_of_terms} terms"
+        return f"{self.name} containing {len(self)} terms"
     
     def __repr__(self):
-        return reprlib.repr(self.cards)
+        return f"Set({reprlib.repr(self.cards)})"
 
 def learn_set(card_set, shuffle=False, answer_reverse=False):
     """Loop over set a set of flashcards"""

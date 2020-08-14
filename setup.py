@@ -10,7 +10,7 @@ README = (HERE / "README.md").read_text()
 # This call to setup() does all the work
 setup(
     name="flashcards_cli",
-    version="1.2.5",
+    version="1.3.5",
     description="Learn a set of flashcards",
     long_description=README,
     long_description_content_type="text/markdown",

@@ -17,6 +17,16 @@ class Flashcard:
                 return True
         return False
 
+    def __eq__(self, rhs):
+        if not isinstance(rhs, Flashcard):
+            return NotImplemented
+        return (self.term == rhs.term) and (self.definition == rhs.definition)
+    
+    def __ne__(self, rhs):
+        if not isinstance(rhs, Flashcard):
+            return NotImplemented
+        return (self.term != rhs.term) or (self.definition != rhs.definition)
+
     def __str__(self):
         return f"{self.term}:{self.definition}"
 
