@@ -5,15 +5,16 @@ Useful for learning vocabulary of a new language.
 
 # Usage
 ```bash
-usage: flashcards [-h] [-s] [-r] path [path ...]
+usage: flashcards_cli [-h] [-s] [-r] [-v] path [path ...]
 
 positional arguments:
-  path           path(s) to flashcard csv file(s)
+  path           path to flashcard csv file(s)
 
 optional arguments:
   -h, --help     show this help message and exit
   -s, --shuffle  shuffle order of flashcards in the set
   -r, --reverse  reverse answering, answer with term rather than definition
+  -v, --version  show program's version number and exit
   ```
   
   ## Flashcard Sets

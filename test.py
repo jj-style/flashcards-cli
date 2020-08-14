@@ -1,8 +1,10 @@
 import unittest
 import os
+import sys
 
 from flashcards_cli import Set
 from flashcards_cli.flashcard import Flashcard
+from flashcards_cli.__main__ import main
 
 class TestFlaschards(unittest.TestCase):
 
@@ -169,6 +171,23 @@ class TestCollectionProtocols(unittest.TestCase):
         s = Set("one", [self.example_card_one])
         t = Set("two", [self.example_card_two, self.example_card_one])
         self.assertEqual(s+t, Set("one,two",[self.example_card_one, self.example_card_two, self.example_card_one]))
+
+class TestCommandLineArgs(unittest.TestCase):
+    
+    def test_none(self):
+        sys.argv = ["flashcards_cli"]
+        with self.assertRaises(SystemExit):
+            main()
+
+    def test_version(self):
+        sys.argv = ["flashcards_cli", "-v"]
+        with self.assertRaises(SystemExit):
+            main()
+
+    def test_help(self):
+        sys.argv = ["flashcards_cli", "-h"]
+        with self.assertRaises(SystemExit):
+            main()
 
 if __name__ == "__main__":
     unittest.main()
