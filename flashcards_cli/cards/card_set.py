@@ -1,8 +1,4 @@
-<<<<<<< HEAD:flashcards_cli/cards/card_set.py
 from .flashcard import Flashcard
-=======
-from flashcards_cli.flashcard import Flashcard
->>>>>>> tmp:flashcards_cli/card_set.py
 import random
 import os
 import reprlib
